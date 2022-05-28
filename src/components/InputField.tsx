@@ -1,20 +1,43 @@
-import React from "react";
-import { TextInput } from "react-native";
+import React, { ReactElement } from "react";
+import { StyleSheet, View } from "react-native";
+import { TextInput, Text } from 'react-native-paper';
+import { FormikErrors, FormikTouched } from "formik";
 
 type InputFieldProps = {
 	label: string;
-	value?: string;
-	placeholder?: string;
-	keyboardType?: "default" | "number-pad" | "decimal-pad" | "numeric" | "email-address" | "phone-pad";
+	value: string;
+	placeholder: string;
 	disabled?: boolean;
 	secureTextEntry?: boolean;
-	onChangeText: () => void;
+	right?: ReactElement;
+	touched?: boolean | FormikTouched<any> | FormikTouched<any>[] | undefined;
+	errors?: string | string[] | FormikErrors<any> | FormikErrors<any>[] | undefined;
+	onChangeText: (value: string) => void;
 }
 
-export default function InputField({ ...props }: InputFieldProps) {
+export default function InputField({ touched, errors, ...props }: InputFieldProps) {
+
 	return (
-		<TextInput
-			{ ...props }
-		/>
+		<View>
+			<TextInput
+				style={ style.inputField }
+				{ ...props }
+			/>
+			{ touched && errors &&
+				<Text style={ style.error }>
+					{ errors }
+				</Text>
+			}
+		</View>
 	);
 }
+
+const style = StyleSheet.create({
+	inputField: {
+		marginTop: 10
+	},
+	error: {
+		fontSize: 12,
+		color: "red",
+	}
+});
