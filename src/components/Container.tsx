@@ -15,9 +15,11 @@ export default function Container({ children }: ContainerProps) {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 0,
+        flex: 1,
+        margin: 20,
+        padding: 10,
         textAlign: "center",
-        marginTop: 20,
-        padding: 10
+        justifyContent: "center",
+        paddingHorizontal: 25
     }
 })

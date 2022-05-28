@@ -1,20 +1,26 @@
-import React from 'react';
-import { SafeAreaView, StatusBar, Text, useColorScheme, } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Colors, } from 'react-native/Libraries/NewAppScreen';
+import Home from "./src/pages/Home";
 import Login from "./src/pages/Login";
+import Register from "./src/pages/Register";
+import ForgotPassword from "./src/pages/ForgotPassword";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-    const isDarkMode = useColorScheme() === 'dark';
+	return (
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName="Home" screenOptions={ { headerShown: false } }>
+				<Stack.Screen name="Home" component={ Home }/>
 
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
+				<Stack.Screen name="Login" component={ Login }/>
+				<Stack.Screen name="Register" component={ Register }/>
 
-    return (
-        <SafeAreaView style={ backgroundStyle }>
-            <StatusBar barStyle={ isDarkMode ? 'light-content' : 'dark-content' }/>
-            <Login />
-        </SafeAreaView>
-    );
+				<Stack.Screen name="ForgotPassword" component={ ForgotPassword }/>
+
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
