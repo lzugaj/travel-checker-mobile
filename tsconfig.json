@@ -23,7 +23,7 @@
   "exclude": [
     "node_modules",
     "babel.config.js",
-    "metro.config.js",
+    "metro.config.mjs",
     "jest.config.js"
   ],
   "include": [

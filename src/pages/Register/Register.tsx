@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../components/Container";
+import Container from "../../components/Container";
 import { StyleSheet, Text } from "react-native";
 
 const Register = () => {

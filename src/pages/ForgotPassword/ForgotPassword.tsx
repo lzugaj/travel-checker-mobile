@@ -1,12 +1,13 @@
 import React from "react";
-import Container from "../components/Container";
-import { Button, Title } from "react-native-paper";
+import Container from "../../components/Container";
 import { Formik, FormikProps } from "formik";
 import { View } from "react-native";
-import InputField from "../components/InputField";
-import { ForgotPasswordDto } from "../dto/types";
-import { ForgotPasswordValidation } from "../validations/AuthorizationValidation";
-import { forgotPassword } from "../api/forgotPassword";
+import { ForgotPasswordDto } from "../../dto/types";
+import { ForgotPasswordValidation } from "../../validations/AuthorizationValidation";
+import { forgotPassword } from "../../api/forgotPassword";
+import Title from "../../components/Title";
+import TextInput from "../../components/UI/TextInput";
+import Button from "../../components/UI/Button";
 
 type Form = ForgotPasswordDto;
 
@@ -19,40 +20,34 @@ const ForgotPassword = ({ navigation }: { navigation: any }) => {
 
 	return (
 		<Container>
-			<Title>
-				Forgot Password
-			</Title>
+			<Title text="Forgot Password" />
 
 			<Formik
 				onSubmit={ handleSubmit }
 				initialValues={ { email: "" } as Form }
 				validationSchema={ ForgotPasswordValidation }
 			>
-				{ ({ handleChange, handleSubmit, values, errors, touched }: FormikProps<any>) => (
+				{ ({ handleChange, handleSubmit, values }: FormikProps<any>) => (
 					<View>
-						<InputField
-							label="Email"
+						<TextInput
+							name="email"
 							value={ values.email }
-							placeholder="Enter email"
+							placeholder="Enter your email"
+							secureTextEntry={ true }
+							keyboardType="email-address"
 							onChangeText={ handleChange("email") }
-							touched={ touched.email }
-							errors={ errors.email }
 						/>
 						<Button
-							mode="contained"
+							title="Continue"
 							onPress={ () => handleSubmit() }
-						>
-							Continue
-						</Button>
+						/>
 					</View>
 				) }
 			</Formik>
-
 			<Button
+				title="Back to Login"
 				onPress={ () => navigation.navigate("Login") }
-			>
-				Back to Login
-			</Button>
+			/>
 		</Container>
 	);
 }

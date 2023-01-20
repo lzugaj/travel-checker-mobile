@@ -1,4 +1,10 @@
 {
   "name": "travel_checker_mobile",
-  "displayName": "travel-checker-mobile"
+  "displayName": "travel-checker-mobile",
+  "expo": {
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "scss", "sass"]
+    }
+  }
 }

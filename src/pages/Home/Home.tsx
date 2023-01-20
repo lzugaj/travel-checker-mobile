@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ActivityIndicator, Button, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
+import Index from "../../components/UI/Button";
 
 const Home = ({ navigation }: { navigation: any }) => {
 	const [ isLoading, setIsLoading ] = useState(true);
@@ -26,7 +27,7 @@ const Home = ({ navigation }: { navigation: any }) => {
 				Home page
 			</Text>
 
-			<Button
+			<Index
 				title="Login"
 				onPress={ () => navigation.navigate("Login") }
 			/>
